@@ -291,6 +291,7 @@ const articleMaker = (artData) => {
     })
     expandButton.style.backgroundColor = 'red';
     expandButton.style.padding = '.5rem'
+
     divContainer.appendChild(expandButton);
 
 
@@ -303,6 +304,16 @@ const articleMaker = (artData) => {
 const allData = artData.map((items) => {
     return articleMaker(items)
 })
+
+let menuItems = [
+    'Students',
+    'Faculty',
+    "What's New",
+    'Tech Trends',
+    'Music',
+    'Log Out'
+];
+
 
 function menuMaker(menuItems) {
     const menuButton = document.querySelector('.menu-button')
@@ -324,9 +335,22 @@ function menuMaker(menuItems) {
     })
     menuButton.appendChild(menuConatiner);
 
+    function toggleEvent() {
+        if (menuConatiner.classList.contains('menu--open')) {
+            menuConatiner.classList.remove('menu--open')
+        } else {
+            menuConatiner.classList.add('menu--open');
+        }
+
+    }
+    menuButton.addEventListener('click', toggleEvent)
+
+
     return menuConatiner
 
 }
 
 
+
 const pageMenu = menuMaker(menuItems)
+document.body.prepend(pageMenu)
